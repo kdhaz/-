@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import express, { json } from 'express';
 import {School} from '../types/school';
 
@@ -28,5 +29,20 @@ router.get('/:schoolId',(req,res)=>{
 });
 
 
+=======
+import express from 'express';
+
+const router = express.Router();
+
+router.get('/',(req, res) => {
+    const data = [
+        {
+            id: 1,
+            name: '둔촌고',
+        },
+    ];
+    return res.status(200).json(data);
+    });
+>>>>>>> 7be73b4f37b7d4d1ca79bb59ef0192080f2d15c7
 
 export default router;
