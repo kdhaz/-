@@ -42,4 +42,43 @@ router.post('/', (req, res) => {
   data.push(school);
   return res.status(201).json();
 });
+
+router.put('/:schoolId', (req, res) => {
+  const { schoolId } = req.params;
+  if (!schoolId) {
+    return res.status(400).json();
+  }
+
+  const schoolIdNumber: number = parseInt(schoolId, 10);
+  if (!data.some(({ id }) => id === schoolIdNumber)) {
+    return res.status(404).json();
+  }
+
+  const school: School = req.body as School;
+  if (school.id !== schoolIdNumber) {
+    return res.status(400).json();
+  }
+
+  const index: number = data.findIndex((existSchool: School) => existSchool.id === schoolIdNumber);
+  data[index] = school;
+  return res.status(200).json();
+});
+
+router.delete('/:schoolId', (req, res) => {
+  const { schoolId } = req.params;
+  if (!schoolId) {
+    return res.status(400).json();
+  }
+
+  const schoolIdNumber: number = parseInt(schoolId, 10);
+  if (!data.some(({ id }) => id === schoolIdNumber)) {
+    return res.status(404).json();
+  }
+
+  const index: number = data.findIndex((existSchool: School) => existSchool.id === schoolIdNumber);
+  data.splice(index, 1);
+
+  return res.status(200).json();
+});
+
 export default router;
