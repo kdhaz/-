@@ -10,7 +10,17 @@ const data: School[] = [
   },
 ];
 
-router.get('/', (req, res) => res.status(200).json(data));
+router.get('/', (req, res) => {
+  const { name } = req.query;
+  const result = [];
+  if (name) {
+    const filtered = data.filter((school: School) => school.name === name);
+    result.push(...filtered);
+  } else {
+    result.push(...data);
+  }
+  return res.status(200).json(result);
+});
 
 router.get('/:schoolId', (req, res) => {
   const { schoolId } = req.params;
