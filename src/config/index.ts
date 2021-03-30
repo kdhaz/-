@@ -51,7 +51,7 @@ export default {
       listenIps: [
         {
           ip: '0.0.0.0',
-          announcedIp: 'IP주소', // replace by public IP address
+          announcedIp: '192.168.0.67', // replace by public IP address
         },
       ],
       maxIncomingBitrate: 1500000,
